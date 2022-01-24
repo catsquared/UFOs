@@ -49,9 +49,11 @@ function updateFilters() {
     delete filters[filterId];
   }
 
+  console.log(filters);
+
   // 6. Call function to apply all filters and rebuild the table
   filterTable();
-  
+
   }
   
   // 7. Use this function to filter the table when data is entered.
@@ -62,9 +64,11 @@ function filterTable() {
 
   // 9. Loop through all of the filters and keep any data that
   // matches the filter values
-  Object.entries(filters).forEach((key, value) => {
-    filteredData = filteredData.filter(row => row.key === value );
+  Object.entries(filters).forEach(([key, value]) => {
+    filteredData = filteredData.filter(row => row[key] === value );
   });
+
+  console.log(filteredData);
 
   // 10. Finally, rebuild the table using the filtered data
   buildTable(filteredData);
